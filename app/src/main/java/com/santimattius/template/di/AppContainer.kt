@@ -20,7 +20,6 @@ internal object AppContainer {
         replaceWith = ReplaceWith(""),
         level = DeprecationLevel.WARNING
     )
-
     fun getRepository(application: Application) = TMDbRepository(
         remoteDataSource = MovieDataSource(service = provideMovieDBService()),
         localDataSource = RoomDataSource(dao = provideAppDatabase(application).dao())
