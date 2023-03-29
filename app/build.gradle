@@ -2,6 +2,7 @@ plugins {
     id 'com.android.application'
     id 'kotlin-android'
     id 'kotlin-kapt'
+    id 'com.google.dagger.hilt.android'
     id 'io.gitlab.arturbosch.detekt'
 }
 
@@ -84,9 +85,15 @@ dependencies {
     implementation libs.room.runtime
     kapt libs.room.compiler
 
-    testImplementation 'junit:junit:4.12'
+    implementation "com.google.dagger:hilt-android:2.44"
+    kapt "com.google.dagger:hilt-compiler:2.44"
+
+    testImplementation 'junit:junit:4.13.2'
     testImplementation libs.bundles.unitTesting
     androidTestImplementation libs.bundles.androidTesting
 
+}
 
+kapt {
+    correctErrorTypes true
 }
