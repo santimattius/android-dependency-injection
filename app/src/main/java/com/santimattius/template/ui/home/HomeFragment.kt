@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import com.santimattius.template.R
 import com.santimattius.template.core.presentation.DialogAction
@@ -15,10 +14,11 @@ import com.santimattius.template.databinding.PopularMoviesFragmentBinding
 import com.santimattius.template.ui.components.showDialog
 import com.santimattius.template.ui.home.components.PopularMoviesAdapter
 import com.santimattius.template.ui.home.models.HomeState
+import org.koin.androidx.viewmodel.ext.android.activityViewModel
 
 class HomeFragment : Fragment() {
 
-    private val viewModel: HomeViewModel by activityViewModels()
+    private val viewModel: HomeViewModel by activityViewModel()
 
     private val homeAdapter: PopularMoviesAdapter by lazy {
         PopularMoviesAdapter {
