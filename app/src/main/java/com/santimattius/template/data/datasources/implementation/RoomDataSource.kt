@@ -4,12 +4,12 @@ import com.santimattius.template.data.client.database.AppDataBase
 import com.santimattius.template.data.client.database.MovieDao
 import com.santimattius.template.data.datasources.LocalDataSource
 import com.santimattius.template.data.entities.MovieEntity
-import javax.inject.Inject
+import org.koin.core.component.KoinComponent
+import org.koin.core.component.inject
 
-class RoomDataSource @Inject constructor() : LocalDataSource {
+class RoomDataSource : LocalDataSource, KoinComponent {
 
-    @Inject
-    lateinit var appDataBase: AppDataBase
+    private val appDataBase: AppDataBase by inject()
 
     private val dao: MovieDao
         get() = appDataBase.dao()

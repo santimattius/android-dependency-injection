@@ -31,7 +31,7 @@ class TMDbRepositoryTest {
     fun setUp() {
         mockkConstructor(MovieDataSource::class)
         mockkConstructor(RoomDataSource::class)
-        repository = TMDbRepository(app)
+        repository = TMDbRepository()
     }
 
     @After

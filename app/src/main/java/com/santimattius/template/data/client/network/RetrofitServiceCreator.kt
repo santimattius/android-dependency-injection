@@ -5,12 +5,9 @@ import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.create
-import javax.inject.Inject
-import javax.inject.Singleton
 
 
-@Singleton
-class RetrofitServiceCreator @Inject constructor() {
+class RetrofitServiceCreator {
 
     private val client = OkHttpClient().newBuilder()
         .addInterceptor(RequestInterceptor(BuildConfig.API_KEY))

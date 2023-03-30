@@ -3,13 +3,13 @@ package com.santimattius.template.data.datasources.implementation
 import com.santimattius.template.data.client.network.RetrofitServiceCreator
 import com.santimattius.template.data.client.network.TheMovieDBService
 import com.santimattius.template.data.datasources.RemoteDataSource
-import javax.inject.Inject
+import org.koin.core.component.KoinComponent
+import org.koin.core.component.inject
 import com.santimattius.template.data.entities.MovieDto as TheMovieDbMovie
 
-class MovieDataSource @Inject constructor() : RemoteDataSource {
+class MovieDataSource : RemoteDataSource, KoinComponent {
 
-    @Inject
-    lateinit var serviceCreator: RetrofitServiceCreator
+    private val serviceCreator: RetrofitServiceCreator by inject()
 
     @Suppress("TooGenericExceptionCaught")
     override suspend fun getPopularMovies(): Result<List<TheMovieDbMovie>> {
