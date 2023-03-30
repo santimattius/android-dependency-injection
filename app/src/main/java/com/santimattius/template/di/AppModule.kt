@@ -1,7 +1,6 @@
 package com.santimattius.template.di
 
 import android.app.Application
-import android.content.Context
 import com.santimattius.template.BuildConfig
 import com.santimattius.template.data.client.database.AppDataBase
 import com.santimattius.template.data.client.network.RetrofitServiceCreator
@@ -12,16 +11,16 @@ import com.santimattius.template.data.datasources.implementation.MovieDataSource
 import com.santimattius.template.data.datasources.implementation.RoomDataSource
 import com.santimattius.template.data.repositories.TMDbRepository
 import com.santimattius.template.domain.repositories.MovieRepository
-import dagger.Module
-import dagger.Provides
-import dagger.hilt.InstallIn
-import dagger.hilt.components.SingletonComponent
+import com.santimattius.template.ui.home.HomeViewModel
+import org.koin.android.annotation.KoinViewModel
+import org.koin.core.annotation.Factory
+import org.koin.core.annotation.Module
+import org.koin.core.annotation.Single
 
 @Module
-@InstallIn(SingletonComponent::class)
 class AppModule {
 
-    @Provides
+    @Factory
     fun provideMovieRepository(
         remoteDataSource: RemoteDataSource,
         localDataSource: LocalDataSource,
@@ -30,22 +29,25 @@ class AppModule {
         localDataSource = localDataSource
     )
 
-    @Provides
+    @Factory
     fun provideLocalDataSource(appDataBase: AppDataBase): LocalDataSource {
         return RoomDataSource(dao = appDataBase.dao())
     }
 
-    @Provides
+    @Single
     fun provideAppDatabase(application: Application): AppDataBase = AppDataBase.get(application)
 
-    @Provides
+    @Factory
     fun provideRemoteDataSource(service: TheMovieDBService): RemoteDataSource {
         return MovieDataSource(service = service)
     }
 
-    @Provides
+    @Single
     fun provideMovieDBService(): TheMovieDBService =
         RetrofitServiceCreator.create(BuildConfig.API_KEY)
 
+
+    @KoinViewModel
+    fun provideViewModel(movieRepository: MovieRepository):HomeViewModel = HomeViewModel(movieRepository)
 
 }
