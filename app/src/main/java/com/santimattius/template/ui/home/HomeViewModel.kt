@@ -7,18 +7,16 @@ import androidx.lifecycle.viewModelScope
 import com.santimattius.template.data.repositories.TMDbRepository
 import com.santimattius.template.ui.home.models.HomeState
 import com.santimattius.template.ui.home.models.mapping.asUiModels
-import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
-import javax.inject.Inject
+import org.koin.core.component.KoinComponent
+import org.koin.core.component.inject
+import org.koin.ext.inject
 
+class HomeViewModel : ViewModel(), KoinComponent {
 
-@HiltViewModel
-class HomeViewModel @Inject constructor() : ViewModel() {
-
-    @Inject
-    lateinit var movieRepository: TMDbRepository
+    private val movieRepository: TMDbRepository by inject()
 
     private val _state = MutableLiveData<HomeState>()
     val state: LiveData<HomeState>

@@ -6,15 +6,13 @@ import com.santimattius.template.data.dtoToEntity
 import com.santimattius.template.data.entityToDomain
 import com.santimattius.template.domain.entities.Movie
 import com.santimattius.template.domain.repositories.MovieRepository
-import javax.inject.Inject
+import org.koin.core.component.KoinComponent
+import org.koin.core.component.inject
 
-class TMDbRepository @Inject constructor() : MovieRepository {
+class TMDbRepository : MovieRepository, KoinComponent {
 
-    @Inject
-    lateinit var remoteDataSource: MovieDataSource
-
-    @Inject
-    lateinit var localDataSource: RoomDataSource
+    private val remoteDataSource: MovieDataSource by inject()
+    private val localDataSource: RoomDataSource by inject()
 
     override suspend fun getPopular(): List<Movie> {
         if (localDataSource.isEmpty()) {
