@@ -1,7 +1,5 @@
 package com.santimattius.template.di
 
-import android.app.Application
-import android.content.Context
 import com.santimattius.template.BuildConfig
 import com.santimattius.template.data.client.database.AppDataBase
 import com.santimattius.template.data.client.network.RetrofitServiceCreator
@@ -12,40 +10,37 @@ import com.santimattius.template.data.datasources.implementation.MovieDataSource
 import com.santimattius.template.data.datasources.implementation.RoomDataSource
 import com.santimattius.template.data.repositories.TMDbRepository
 import com.santimattius.template.domain.repositories.MovieRepository
-import dagger.Module
-import dagger.Provides
-import dagger.hilt.InstallIn
-import dagger.hilt.components.SingletonComponent
+import com.santimattius.template.ui.home.HomeViewModel
+import org.koin.android.ext.koin.androidApplication
+import org.koin.androidx.viewmodel.dsl.viewModel
+import org.koin.dsl.module
 
-@Module
-@InstallIn(SingletonComponent::class)
-class AppModule {
+val appModule = module {
 
-    @Provides
-    fun provideMovieRepository(
-        remoteDataSource: RemoteDataSource,
-        localDataSource: LocalDataSource,
-    ): MovieRepository = TMDbRepository(
-        remoteDataSource = remoteDataSource,
-        localDataSource = localDataSource
-    )
-
-    @Provides
-    fun provideLocalDataSource(appDataBase: AppDataBase): LocalDataSource {
-        return RoomDataSource(dao = appDataBase.dao())
+    viewModel {
+        HomeViewModel(movieRepository = get())
     }
 
-    @Provides
-    fun provideAppDatabase(application: Application): AppDataBase = AppDataBase.get(application)
-
-    @Provides
-    fun provideRemoteDataSource(service: TheMovieDBService): RemoteDataSource {
-        return MovieDataSource(service = service)
+    single {
+        AppDataBase.get(androidApplication())
     }
 
-    @Provides
-    fun provideMovieDBService(): TheMovieDBService =
+    single<TheMovieDBService> {
         RetrofitServiceCreator.create(BuildConfig.API_KEY)
+    }
 
+    factory<MovieRepository> {
+        TMDbRepository(
+            remoteDataSource = get<RemoteDataSource>(),
+            localDataSource = get<LocalDataSource>()
+        )
+    }
 
+    factory<LocalDataSource> {
+        RoomDataSource(dao = get<AppDataBase>().dao())
+    }
+
+    factory<RemoteDataSource> {
+        MovieDataSource(service = get<TheMovieDBService>())
+    }
 }
