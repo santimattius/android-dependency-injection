@@ -93,6 +93,10 @@ dependencies {
     def koin_version = "3.4.0"
     implementation "io.insert-koin:koin-core:$koin_version"
     implementation "io.insert-koin:koin-android:$koin_version"
+    // Koin Test features
+    testImplementation "io.insert-koin:koin-test:$koin_version"
+    // Koin for JUnit 4
+    testImplementation "io.insert-koin:koin-test-junit4:$koin_version"
 
     testImplementation 'junit:junit:4.13.2'
     testImplementation libs.bundles.unitTesting
