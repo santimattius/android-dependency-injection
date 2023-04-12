@@ -1,11 +1,11 @@
 package com.santimattius.template.di
 
 import android.app.Application
-import android.content.Context
 import com.santimattius.template.BuildConfig
 import com.santimattius.template.data.client.database.AppDataBase
 import com.santimattius.template.data.client.network.RetrofitServiceCreator
 import com.santimattius.template.data.client.network.TheMovieDBService
+import com.santimattius.template.data.datasources.InMemoryDataSource
 import com.santimattius.template.data.datasources.LocalDataSource
 import com.santimattius.template.data.datasources.RemoteDataSource
 import com.santimattius.template.data.datasources.implementation.MovieDataSource
@@ -24,15 +24,22 @@ class AppModule {
     @Provides
     fun provideMovieRepository(
         remoteDataSource: RemoteDataSource,
-        localDataSource: LocalDataSource,
+        @RoomLocalDataSource localDataSource: LocalDataSource,
     ): MovieRepository = TMDbRepository(
         remoteDataSource = remoteDataSource,
         localDataSource = localDataSource
     )
 
+    @RoomLocalDataSource
     @Provides
     fun provideLocalDataSource(appDataBase: AppDataBase): LocalDataSource {
         return RoomDataSource(dao = appDataBase.dao())
+    }
+
+    @InMemoryLocalDataSource
+    @Provides
+    fun provideInMemoryLocalDataSource(appDataBase: AppDataBase): LocalDataSource {
+        return InMemoryDataSource()
     }
 
     @Provides
