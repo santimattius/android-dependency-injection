@@ -26,7 +26,7 @@ class HomeFragment : Fragment() {
         }
     }
 
-    private lateinit var viewBinding: PopularMoviesFragmentBinding
+    lateinit var viewBinding: PopularMoviesFragmentBinding
 
     override fun onCreateView(
         inflater: LayoutInflater,

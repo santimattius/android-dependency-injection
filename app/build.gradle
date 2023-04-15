@@ -68,6 +68,11 @@ detekt {
     autoCorrect = true
 }
 
+hilt {
+    enableTransformForLocalTests = true
+}
+
+
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
@@ -92,6 +97,13 @@ dependencies {
     testImplementation libs.bundles.unitTesting
     androidTestImplementation libs.bundles.androidTesting
 
+    // For Robolectric tests.
+    testImplementation 'com.google.dagger:hilt-android-testing:2.44'
+    kaptTest 'com.google.dagger:hilt-android-compiler:2.44'
+
+    // For instrumented tests.
+    androidTestImplementation 'com.google.dagger:hilt-android-testing:2.44'
+    kaptAndroidTest 'com.google.dagger:hilt-android-compiler:2.44'
 }
 
 kapt {

@@ -11,7 +11,7 @@ object MovieMother {
     private val gson = GsonBuilder().create()
 
     fun getMovies(): List<MovieDto> {
-        val json = jsonLoader.load("movie_popular_response_success")
+        val json = jsonLoader.load("movie_popular_response_success.json")
         return gson.fromJson<Response<MovieDto>>(
             json,
             object : TypeToken<Response<MovieDto>>() {}.type
