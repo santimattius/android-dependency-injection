@@ -38,7 +38,7 @@ class AppModule {
 
     @InMemoryLocalDataSource
     @Provides
-    fun provideInMemoryLocalDataSource(appDataBase: AppDataBase): LocalDataSource {
+    fun provideInMemoryLocalDataSource(): LocalDataSource {
         return InMemoryDataSource()
     }
 
