@@ -7,7 +7,6 @@ import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface TheMovieDBService {
-
     @GET("/{version}/movie/popular")
     suspend fun getMoviePopular(
         @Path("version") version: Int,

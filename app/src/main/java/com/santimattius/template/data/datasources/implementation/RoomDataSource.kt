@@ -3,7 +3,9 @@ package com.santimattius.template.data.datasources.implementation
 import com.santimattius.template.data.client.database.MovieDao
 import com.santimattius.template.data.datasources.LocalDataSource
 import com.santimattius.template.data.entities.MovieEntity
+import org.koin.core.annotation.Single
 
+@Single
 class RoomDataSource(
     private val dao: MovieDao,
 ) : LocalDataSource {

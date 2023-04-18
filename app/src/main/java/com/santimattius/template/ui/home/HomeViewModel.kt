@@ -10,7 +10,10 @@ import com.santimattius.template.ui.home.models.mapping.asUiModels
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
+import org.koin.android.annotation.KoinViewModel
 
+
+@KoinViewModel
 class HomeViewModel(
     private val movieRepository: MovieRepository,
 ) : ViewModel() {
