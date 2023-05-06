@@ -19,12 +19,15 @@ external dependencies.
 - IoC: [here](https://github.com/santimattius/android-dependency-injection/tree/di_01)
 - Manual DI: [here](https://github.com/santimattius/android-dependency-injection/tree/di_02)
 - Hilt:
-  -   Using Inject: [here](https://github.com/santimattius/android-dependency-injection/tree/di_03_hilt_inject)
-  -   Using Provide: [here](https://github.com/santimattius/android-dependency-injection/tree/di_04_hilt_provide)
+  - Using Inject: [here](https://github.com/santimattius/android-dependency-injection/tree/di_03_hilt_inject)
+  - Using Provide: [here](https://github.com/santimattius/android-dependency-injection/tree/di_04_hilt_provide)
+  - Custom Annotations: [here](https://github.com/santimattius/android-dependency-injection/tree/di_04_multi_impl)
+  - Testing: [here](https://github.com/santimattius/android-dependency-injection/tree/di_08_hilt_testing)
 - Koin:
-  -   Using Inject: [here](https://github.com/santimattius/android-dependency-injection/tree/di_05_koin_inject)
-  -   Using module definition: [here](https://github.com/santimattius/android-dependency-injection/tree/di_06_koin_provide)  
-  -   Using Koin Annotations: [here](https://github.com/santimattius/android-dependency-injection/tree/di_07_koin_annotations)
+  - Using Inject: [here](https://github.com/santimattius/android-dependency-injection/tree/di_05_koin_inject)
+  - Using module definition: [here](https://github.com/santimattius/android-dependency-injection/tree/di_06_koin_provide)  
+  - Using Koin Annotations: [here](https://github.com/santimattius/android-dependency-injection/tree/di_07_koin_annotations)
+  - Automatic Injection: [here](https://github.com/santimattius/android-dependency-injection/tree/di_07_koin_annotations_auto_inject)
 
 ## Concepts
 
