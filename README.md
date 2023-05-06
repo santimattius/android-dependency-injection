@@ -5,6 +5,8 @@ you will see that the code is super decoupled with external frameworks and even 
 Android framework, this will help you to model your domain purely in Kotlin without generating
 external dependencies.
 
+[Dependency Injection on Android (Spanish)](https://github.com/santimattius/android-dependency-injection/files/11413122/Inyeccion.de.Dependencias.en.Android.pdf)
+
 ## Screenshot
 
 <p align="center">
